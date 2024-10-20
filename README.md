@@ -1,6 +1,3 @@
-Here's a README file for your mini-project on analyzing financial data:
-
----
 
 # Financial Data Analysis Mini-Project
 
@@ -68,10 +65,4 @@ This analysis offers valuable insights into financial behavior based on demograp
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## Acknowledgments
 
-- Thanks to the contributors of the dataset and the developers of the libraries used in this project.
-
---- 
-
-Feel free to modify any sections to better match your project specifics or preferences!
