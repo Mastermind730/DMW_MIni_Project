@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Data Visualization</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Finance Insights</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h1>Investment Insights Dashboard</h1>
+        <p class="lead">Visualizing investment patterns based on gender, age, and factors influencing investment decisions.</p>
+    </div>
+
+    <!-- Adding Tabs for organized content -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="gender-tab" data-bs-toggle="tab" data-bs-target="#gender" type="button" role="tab" aria-controls="gender" aria-selected="true">Gender Distribution</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="age-tab" data-bs-toggle="tab" data-bs-target="#age" type="button" role="tab" aria-controls="age" aria-selected="false">Age Distribution</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="factors-tab" data-bs-toggle="tab" data-bs-target="#factors" type="button" role="tab" aria-controls="factors" aria-selected="false">Factors Affecting Investment</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="gender-factor-tab" data-bs-toggle="tab" data-bs-target="#gender-factor" type="button" role="tab" aria-controls="gender-factor" aria-selected="false">Gender vs Factors</button>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-4" id="myTabContent">
+        <!-- Gender Distribution -->
+        <div class="tab-pane fade show active" id="gender" role="tabpanel" aria-labelledby="gender-tab">
+            <div class="card mb-4">
+                <div class="card-header">Gender Distribution</div>
+                <div class="card-body">
+                    <img src="data:image/png;base64,{{ gender_plot }}" class="img-fluid" alt="Gender Distribution">
+                    <p class="card-text mt-2">This graph shows the distribution of respondents based on gender.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Age Distribution -->
+        <div class="tab-pane fade" id="age" role="tabpanel" aria-labelledby="age-tab">
+            <div class="card mb-4">
+                <div class="card-header">Age Distribution</div>
+                <div class="card-body">
+                    <img src="data:image/png;base64,{{ age_plot }}" class="img-fluid" alt="Age Distribution">
+                    <p class="card-text mt-2">This graph illustrates the age distribution of respondents across various age groups.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Factors Affecting Investment -->
+        <div class="tab-pane fade" id="factors" role="tabpanel" aria-labelledby="factors-tab">
+            <div class="card mb-4">
+                <div class="card-header">Factors Affecting Investment</div>
+                <div class="card-body">
+                    <img src="data:image/png;base64,{{ factor_plot }}" class="img-fluid" alt="Factors Affecting Investment">
+                    <p class="card-text mt-2">This chart shows the factors that influence investment decisions, such as risk and returns.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gender vs Factors -->
+        <div class="tab-pane fade" id="gender-factor" role="tabpanel" aria-labelledby="gender-factor-tab">
+            <div class="card mb-4">
+                <div class="card-header">Gender vs Factors Affecting Investment</div>
+                <div class="card-body">
+                    <img src="data:image/png;base64,{{ gender_factor_plot }}" class="img-fluid" alt="Gender vs Factors">
+                    <p class="card-text mt-2">This graph compares gender and the different factors influencing investment decisions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white mt-5 py-3 text-center">
+    <p>&copy; 2024 Finance Insights. All Rights Reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
