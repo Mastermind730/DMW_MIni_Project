@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="text-center mb-4">Missing Values Handling</h2>
+
+
+{{ missing_values | safe }}
+
+
+<a href="/" class="btn btn-primary">Back to Home</a>
+{% endblock %}

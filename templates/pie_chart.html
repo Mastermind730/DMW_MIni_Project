@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="text-center mb-4">Pie Chart Visualization</h2>
+<img src="{{ url_for('static', filename='images/pie_chart.png') }}" class="img-fluid" alt="Pie Chart">
+
+<a href="/visualizations" class="btn btn-primary mt-4">Back to Visualizations</a>
+{% endblock %}

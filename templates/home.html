@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <!-- Main Container -->
+    <div class="container mt-5">
+        <!-- Title Section -->
+        <h1 class="text-center display-4 mb-4">Indian Cars Data Analysis</h1>
+        
+        <!-- Project Overview -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <p class="text-center fs-5">
+                    Welcome to the Indian Cars Data Analysis Project! Here, you can explore various insights into the Indian automobile market using interactive visualizations, statistics, and data analysis. Navigate through different sections to view detailed reports on car manufacturers, prices, fuel types, and more!
+                </p>
+            </div>
+        </div>
+
+        <!-- Key Features Section -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Dataset Summary</h5>
+                        <p class="card-text">View a comprehensive summary of the dataset, including car counts, average prices, and more.</p>
+                        <a href="/summary" class="btn btn-primary">Explore Summary</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Missing Values</h5>
+                        <p class="card-text">Check for missing data and learn how missing values are handled in the dataset.</p>
+                        <a href="/missing" class="btn btn-warning">View Missing Data</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Car Makers Pie Chart</h5>
+                        <p class="card-text">Visualize the distribution of car manufacturers in a pie chart.</p>
+                        <a href="/car_makers_pie" class="btn btn-success">View Pie Chart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Dataset Stats -->
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-3">Quick Stats</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Cars</h5>
+                                <p class="card-text fs-3">{{ total_cars }}</p>
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <div class="col-md-3">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Most Common Fuel</h5>
+                                <p class="card-text fs-3">{{ most_common_fuel }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Visualizations -->
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h2 class="text-center mb-4">Recent Visualizations</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <img src="{{ url_for('static', filename='images/bar.png') }}" class="card-img-top" alt="Visualization 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Fuel Types Comparison</h5>
+                                <p class="card-text">Compare the different fuel types used by cars in India.</p>
+                                <a href="/visualization1" class="btn btn-info">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <img src="{{ url_for('static', filename='images/histo.png') }}" class="card-img-top" alt="Visualization 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Price Range Distribution</h5>
+                                <p class="card-text">Analyze the price range distribution across different car brands.</p>
+                                <a href="/visualization2" class="btn btn-info">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <img src="{{ url_for('static', filename='images/box.png') }}" class="card-img-top" alt="Visualization 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Car Type Box Plot</h5>
+                                <p class="card-text">Explore the variations in car types using a box plot.</p>
+                                <a href="/box_plot" class="btn btn-info">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

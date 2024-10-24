@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="text-center mb-4">Visualizations</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Pie Chart of Car Manufacturers</h4>
+        <img src="{{ url_for('static', filename='images/pie_chart.png') }}" class="img-fluid" alt="Pie Chart">
+    </div>
+    <div class="col-md-6">
+        <h4>Box Plot of Numeric Variables</h4>
+        <img src="{{ url_for('static', filename='images/box.png') }}" class="img-fluid" alt="Box Plot">
+    </div>
+</div>
+
+<a href="/" class="btn btn-primary mt-4">Back to Home</a>
+{% endblock %}
