@@ -1,19 +1,11 @@
 
-# Financial Data Analysis Mini-Project
+#Indian Car Data Analysis Mini-Project
 
 ## Overview
 
 This mini-project focuses on analyzing a dataset containing information about individuals' financial investments. The goal is to understand the demographics of the respondents, factors affecting their investment decisions, and their investment monitoring habits.
 
-## Dataset
 
-The dataset used in this analysis is named `Finance_data.csv` and includes various financial attributes such as:
-
-- Gender
-- Age
-- Factors influencing investment decisions
-- Duration of investments
-- Investment monitoring frequency
 
 ## Libraries Used
 
