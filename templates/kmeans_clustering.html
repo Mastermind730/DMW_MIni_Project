@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">KMeans Clustering Results</h1>
+    <div class="mt-4">
+        <iframe src="{{ scatter_path }}" width="100%" height="600px"></iframe>
+    </div>
+    <div class="mt-4">
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

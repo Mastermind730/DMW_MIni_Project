@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
+from sklearn.cluster import KMeans
 import os
 
 app = Flask(__name__)
@@ -14,10 +15,6 @@ df = pd.read_csv("cars_ds_final.csv")
 def get_total_cars():
     return len(df)
 
-# Function to get the total number of unique car manufacturers
-# def get_total_manufacturers():
-#     return df['Manufacturer'].nunique()
-
 # Function to get the most common fuel type
 def get_most_common_fuel():
     return df['Fuel_Type'].mode()[0]
@@ -26,30 +23,10 @@ def get_most_common_fuel():
 @app.route('/')
 def home():
     total_cars = get_total_cars()
-    
     most_common_fuel = get_most_common_fuel()
     
     # Pass the values to the template
     return render_template('home.html', total_cars=total_cars, most_common_fuel=most_common_fuel)
-
-# Route to show dataset summary
-@app.route('/summary')
-def summary():
-    description = df.describe().to_html(classes='table table-striped table-bordered')
-    print("desc:",description)
-    return render_template('summary.html', description=description)
-
-# Route to show missing values
-@app.route('/missing')
-def missing():
-    missing_values = df.isnull().sum().to_frame().to_html(classes='table table-striped table-bordered')
-    print(missing_values)
-    return render_template('missing_values.html', missing_values=missing_values)
-
-@app.route("/visualizations")
-def visualizations():
-    return render_template("visualizations.html")
-# Route to display pie chart of car manufacturers
 @app.route('/car_makers_pie')
 def car_makers_pie():
     plt.figure(figsize=(10, 20))
@@ -60,26 +37,49 @@ def car_makers_pie():
     plt.savefig(pie_chart_path)
     plt.close()
     return render_template('pie_chart.html', pie_chart_path=pie_chart_path)
+# Route to show dataset summary
+@app.route('/summary')
+def summary():
+    description = df.describe().to_html(classes='table table-striped table-bordered')
+    return render_template('summary.html', description=description)
 
-# Route to display histograms for numeric columns
-# @app.route('/numeric_histogram')
-# def numeric_histogram():
-#     numeric_columns_to_visualize = ['column_1', 'column_2', 'column_3']
-#     df_numeric = pd.DataFrame({
-#         'column_1': [20, 40, 60, 80, 100, 120],
-#         'column_2': [5, 50, 62, 79, 95, 105],
-#         'column_3': [38, 56, 23, 45, 67, 89]
-#     })
-#     plt.figure(figsize=(12, 6))
-#     for i, column in enumerate(numeric_columns_to_visualize, 1):
-#         plt.subplot(1, len(numeric_columns_to_visualize), i)
-#         plt.hist(df_numeric[column], bins=20, edgecolor='green', color='purple')
-#         plt.title(f'Histogram of {column}')
-#     plt.tight_layout()
-#     hist_path = "static/histogram.png"
-#     plt.savefig(hist_path)
-#     plt.close()
-#     return render_template('numeric_histogram.html', hist_path=hist_path)
+# Route to show missing values
+@app.route('/missing')
+def missing():
+    missing_values = df.isnull().sum().to_frame().to_html(classes='table table-striped table-bordered')
+    return render_template('missing_values.html', missing_values=missing_values)
+
+# Route for KMeans Clustering
+@app.route('/kmeans')
+def kmeans_clustering():
+    # Select relevant numeric columns for clustering
+    # Height	Length	Width
+
+    numeric_columns = ['Cylinders', 'Valves_Per_Cylinder', 'Gears']  # You can adjust these based on your dataset
+    df_numeric = df[numeric_columns].dropna()
+
+    # Apply KMeans
+    kmeans = KMeans(n_clusters=3)
+    df_numeric['Cluster'] = kmeans.fit_predict(df_numeric)
+
+    # Create an interactive scatter plot using Plotly
+    fig = px.scatter(df_numeric, x='Cylinders', y='Valves_Per_Cylinder', color='Cluster', size='Valves_Per_Cylinder',
+                     title="KMeans Clustering on Cars Dataset")
+    scatter_path = "static/images/kmeans_scatter.html"
+    fig.write_html(scatter_path)
+
+    return render_template('kmeans_clustering.html', scatter_path=scatter_path)
+
+# Route to display the correlation matrix
+@app.route('/correlation_matrix')
+def correlation_matrix():
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(df.corr(), annot=True, cmap="coolwarm", fmt='.2f', linewidths=0.5)
+    plt.title('Correlation Matrix', fontsize=18)
+    correlation_matrix_path = "static/images/correlation_matrix.png"
+    plt.savefig(correlation_matrix_path)
+    plt.close()
+    return render_template('correlation_matrix.html', correlation_matrix_path=correlation_matrix_path)
 
 # Route to display box plot for numeric columns
 @app.route('/box_plot')

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Car Dataset Overview</h1>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5>Total Cars: {{ total_cars }}</h5>
+            <h5>Most Common Fuel Type: {{ most_common_fuel }}</h5>
+        </div>
+    </div>
+    <div class="mt-4">
+        <a href="/summary" class="btn btn-primary">View Dataset Summary</a>
+        <a href="/missing" class="btn btn-info">View Missing Values</a>
+        <a href="/visualizations" class="btn btn-success">View Visualizations</a>
+    </div>
+</div>
+{% endblock %}
